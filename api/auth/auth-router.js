@@ -1,7 +1,23 @@
 const router = require('express').Router();
+const jwt = require ('jsonwebtoken');
 
-router.post('/register', (req, res) => {
-  res.end('implement register, please!');
+const Users = require('../users/users-model.js');
+
+router.post('/register', async (req, res) => {
+  const user = req.body;
+
+  const hash = brypt.hashSync(user.password, 10);
+  user.password = hash;
+
+  try {
+    const saved = await Users.add(user);
+    res.status(201).json(saved);
+  } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+  }
+});
+
   /*
     IMPLEMENT
     You are welcome to build additional middlewares to help with the endpoint's functionality.
@@ -26,10 +42,22 @@ router.post('/register', (req, res) => {
     4- On FAILED registration due to the `username` being taken,
       the response body should include a string exactly as follows: "username taken".
   */
-});
 
-router.post('/login', (req, res) => {
-  res.end('implement login, please!');
+
+router.post('/login', async (req, res) => {
+  let {username, password} = req.body;
+
+  try{
+    const user = await Users.findBy({ username }).first();
+
+    if (user && bcrypt.compareSync(password, user.password)) {
+      res.session.user = user;
+      res.status(200).json({ message: `Welcome ${user.username}!` })
+    } else {
+      res.status(401.json)
+    }
+  }
+  
   /*
     IMPLEMENT
     You are welcome to build additional middlewares to help with the endpoint's functionality.
