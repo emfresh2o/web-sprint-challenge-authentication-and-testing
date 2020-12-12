@@ -25,9 +25,16 @@ We will hash the user's password using `bcryptjs`, and use JSON Web Tokens and t
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics.
 
 1. Differences between using _sessions_ or _JSON Web Tokens_ for authentication.
+--> `sessions or Json Web Tokens` are both forms of database authentication but they are somewhat different.  `JWT` has a cryptographic signature, stateless, and authentication can occur locally where users can be authenticated multiple times without communicating with the database.  Meanwhile, `sessions` only work across a single domain or sub domains and normally after each session it is disabled by the browser and not stored in the database.
+
 2. What does `bcryptjs` do to help us store passwords in a secure manner?
+--> `bcryptjs` is essentially a library that will hash the password encrypting the data in that database by generating random bytes of character
+
 3. How are unit tests different from integration and end-to-end testing?
+--> `unit tests` verifies the individual parts of source codes are working correctly helping reduce bugs during the early phase of development. `integration tests` verifies the source codes by hitting the real server endpoint and check if all endpoints are working together. Meanwhile, `end-to-end tests` a technique use when testing the real network responses from beginning to end by going to the real server endpoints and check how the application flow behaves.
+
 4. How does _Test Driven Development_ change the way we write applications and tests?
+--> It helps developer write a functional application avoiding errors and duplicate codes in order to pass tests.
 
 You are expected to be able to answer questions in these areas.
 
@@ -45,9 +52,9 @@ You are expected to be able to answer questions in these areas.
 
 Your finished project must include all of the following requirements:
 
-- [ ] An authentication workflow with functionality for account creation and login, implemented inside `api/auth/auth-router.js`.
-- [ ] Middleware used to restrict access to resources from non-authenticated requests, implemented inside `api/middleware/restricted-endpoint.js`.
-- [ ] A minimum of 2 tests per API endpoint, implemented inside `api/server.test.js`.
+- [√] An authentication workflow with functionality for account creation and login, implemented inside `api/auth/auth-router.js`.
+- [√] Middleware used to restrict access to resources from non-authenticated requests, implemented inside `api/middleware/restricted-endpoint.js`.
+- [√] A minimum of 2 tests per API endpoint, implemented inside `api/server.test.js`.
 
 **Notes:**
 
@@ -70,4 +77,4 @@ After finishing your required elements, you can push your work further. These go
 
 Follow these steps for completing your project.
 
-- [ ] Submit in Canvas a Pull-Request to merge `<firstName-lastName>` Branch into main (student's Repo). **Please don't merge your own pull request**
+- [√] Submit in Canvas a Pull-Request to merge `<firstName-lastName>` Branch into main (student's Repo). **Please don't merge your own pull request**
